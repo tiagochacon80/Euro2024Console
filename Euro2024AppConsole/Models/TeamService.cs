@@ -63,5 +63,10 @@ namespace Euro2024AppConsole.Models
             }
             return false;
         }
+
+        public List<Team> GetTeams()
+        {
+            return teams;
+        }
     }
 }
