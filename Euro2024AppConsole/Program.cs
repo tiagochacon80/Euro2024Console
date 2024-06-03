@@ -52,7 +52,63 @@ namespace Euro2024AppConsole
                 var team = new Team(id, "", 0, 0, 0, 0, 0, 0, 0);
                 Console.WriteLine("Enter a new team name: ");
                 team.Name = Console.ReadLine();
+
+                Console.WriteLine("Enter the points: ");
+                if(int.TryParse(Console.ReadLine(), out int points))
+                {
+                    team.Points = points;
+                }
+
+                Console.WriteLine("Enter the matches played: ");
+                if (int.TryParse(Console.ReadLine(), out int matchesPlayed))
+                {
+                    team.MatchesPlayed = matchesPlayed;
+                }
+
+                Console.WriteLine("Enter a wins: ");
+                if (int.TryParse(Console.ReadLine(), out int wins))
+                {
+                    team.Wins = wins;
+                }
+
+                Console.WriteLine("Enter a draws: ");
+                if(int.TryParse(Console.ReadLine(), out int draws))
+                {
+                    team.Draws = draws;
+                }
+
+                Console.WriteLine("Enter the losses: ");
+                if(int.TryParse(Console.ReadLine(), out int losses))
+                {
+                    team.Losses = losses;
+                }
+
+                Console.WriteLine("Enter the new goals for: ");
+                if(int.TryParse(Console.ReadLine(), out int goalsFor))
+                {
+                    team.GoalsFor = goalsFor;
+                }
+
+                Console.Write("Enter the new goals against: ");
+                if(int.TryParse(Console.ReadLine(), out int goalsAgainst))
+                {
+                    team.GoalsAgainst = goalsAgainst;
+                }
+
+                if (teamService.AddTeam(team))
+                {
+                    Console.WriteLine("Team added successfully!");
+                }
+                else
+                {
+                    Console.WriteLine("ID already exists.");
+                }                
             }
+            else
+            {
+                Console.WriteLine("Invalid ID.");
+            }
+            Console.WriteLine();
         }
     }
 }
