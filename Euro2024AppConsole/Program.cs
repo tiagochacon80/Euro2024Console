@@ -115,7 +115,7 @@ namespace Euro2024AppConsole
         static void UpdateTeam(TeamService teamService)
         {
             Console.WriteLine("Enter a ID of the team to updated: ");
-            if(int.TryParse(Console.ReadLine(), out int id))
+            if (int.TryParse(Console.ReadLine(), out int id))
             {
                 Console.WriteLine("Enter the new team name: ");
                 var name = Console.ReadLine();
@@ -141,7 +141,7 @@ namespace Euro2024AppConsole
                 Console.Write("Enter the new goals against: ");
                 int.TryParse(Console.ReadLine(), out int goalsAgainst);
 
-                if(teamService.UpdateTeam(id, name, points, matchesPlayed, wins, draws, losses, goalsFor, goalsAgainst))
+                if (teamService.UpdateTeam(id, name, points, matchesPlayed, wins, draws, losses, goalsFor, goalsAgainst))
                 {
                     Console.WriteLine("Team updated successfully!");
                 }
@@ -149,14 +149,33 @@ namespace Euro2024AppConsole
                 {
                     Console.WriteLine("Error updating team");
                 }
+            }
+            else
+            {
+                Console.WriteLine("Invalid ID");
+            }                       
+             Console.WriteLine();
+            }
+            
+        static void DeleteTeam(TeamService teamService)
+        {
+            Console.WriteLine("Enter the ID of the team to be deleted: ");
+            if(int.TryParse(Console.ReadLine(), out int id))
+            {
+                if (teamService.DeleteTeam(id))
+                {
+                    Console.WriteLine("team deleted successfully!");
+                }
                 else
                 {
-                    Console.WriteLine("Invalid ID");
+                    Console.WriteLine("team not found!");
                 }
-                Console.WriteLine();
             }
-
-
+            else
+            {
+                Console.WriteLine("Invalid ID!");
+            }
+            Console.WriteLine();
         }
     }
 }
