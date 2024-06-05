@@ -29,7 +29,20 @@ namespace Euro2024AppConsole
                         ListTeams(teamService);
                         break;
                     case "2":
-                        Add
+                        AddTeam(teamService);
+                        break;
+                    case "3":
+                        UpdateTeam(teamService);
+                        break;
+                    case "4":
+                        DeleteTeam(teamService);
+                        break;
+                    case "5":
+                        running = false;
+                        break;
+                    default:
+                        Console.WriteLine("Invalid opyion!");
+                        break;
                 }
             }
         }
