@@ -143,10 +143,20 @@ namespace Euro2024AppConsole
 
                 if(teamService.UpdateTeam(id, name, points, matchesPlayed, wins, draws, losses, goalsFor, goalsAgainst))
                 {
-
+                    Console.WriteLine("Team updated successfully!");
                 }
-
+                else
+                {
+                    Console.WriteLine("Error updating team");
+                }
+                else
+                {
+                    Console.WriteLine("Invalid ID");
+                }
+                Console.WriteLine();
             }
+
+
         }
     }
 }
