@@ -1,0 +1,15 @@
+C:\Users\tiago\Documents\Projetos .Net\Euro2024AppConsole\Euro2024AppConsole\bin\Debug\net7.0\Euro2024AppConsole.exe
+C:\Users\tiago\Documents\Projetos .Net\Euro2024AppConsole\Euro2024AppConsole\bin\Debug\net7.0\Euro2024AppConsole.deps.json
+C:\Users\tiago\Documents\Projetos .Net\Euro2024AppConsole\Euro2024AppConsole\bin\Debug\net7.0\Euro2024AppConsole.runtimeconfig.json
+C:\Users\tiago\Documents\Projetos .Net\Euro2024AppConsole\Euro2024AppConsole\bin\Debug\net7.0\Euro2024AppConsole.dll
+C:\Users\tiago\Documents\Projetos .Net\Euro2024AppConsole\Euro2024AppConsole\bin\Debug\net7.0\Euro2024AppConsole.pdb
+C:\Users\tiago\Documents\Projetos .Net\Euro2024AppConsole\Euro2024AppConsole\obj\Debug\net7.0\Euro2024AppConsole.csproj.AssemblyReference.cache
+C:\Users\tiago\Documents\Projetos .Net\Euro2024AppConsole\Euro2024AppConsole\obj\Debug\net7.0\Euro2024AppConsole.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\tiago\Documents\Projetos .Net\Euro2024AppConsole\Euro2024AppConsole\obj\Debug\net7.0\Euro2024AppConsole.AssemblyInfoInputs.cache
+C:\Users\tiago\Documents\Projetos .Net\Euro2024AppConsole\Euro2024AppConsole\obj\Debug\net7.0\Euro2024AppConsole.AssemblyInfo.cs
+C:\Users\tiago\Documents\Projetos .Net\Euro2024AppConsole\Euro2024AppConsole\obj\Debug\net7.0\Euro2024AppConsole.csproj.CoreCompileInputs.cache
+C:\Users\tiago\Documents\Projetos .Net\Euro2024AppConsole\Euro2024AppConsole\obj\Debug\net7.0\Euro2024AppConsole.dll
+C:\Users\tiago\Documents\Projetos .Net\Euro2024AppConsole\Euro2024AppConsole\obj\Debug\net7.0\refint\Euro2024AppConsole.dll
+C:\Users\tiago\Documents\Projetos .Net\Euro2024AppConsole\Euro2024AppConsole\obj\Debug\net7.0\Euro2024AppConsole.pdb
+C:\Users\tiago\Documents\Projetos .Net\Euro2024AppConsole\Euro2024AppConsole\obj\Debug\net7.0\Euro2024AppConsole.genruntimeconfig.cache
+C:\Users\tiago\Documents\Projetos .Net\Euro2024AppConsole\Euro2024AppConsole\obj\Debug\net7.0\ref\Euro2024AppConsole.dll
