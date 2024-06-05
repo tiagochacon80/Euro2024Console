@@ -1,5 +1,6 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using Euro2024AppConsole.Models;
+using System.Collections.Concurrent;
 using System.Threading.Channels;
 
 namespace Euro2024AppConsole
@@ -109,6 +110,43 @@ namespace Euro2024AppConsole
                 Console.WriteLine("Invalid ID.");
             }
             Console.WriteLine();
+        }
+
+        static void UpdateTeam(TeamService teamService)
+        {
+            Console.WriteLine("Enter a ID of the team to updated: ");
+            if(int.TryParse(Console.ReadLine(), out int id))
+            {
+                Console.WriteLine("Enter the new team name: ");
+                var name = Console.ReadLine();
+
+                Console.WriteLine("Enter the new points: ");
+                int.TryParse(Console.ReadLine(), out int points);
+
+                Console.WriteLine("Enter the new matches played: ");
+                int.TryParse(Console.ReadLine(), out int matchesPlayed);
+
+                Console.WriteLine("Enter the new wins: ");
+                int.TryParse(Console.ReadLine(), out int wins);
+
+                Console.WriteLine("Enter the new draws: ");
+                int.TryParse(Console.ReadLine(), out int draws);
+
+                Console.Write("Enter the new losses: ");
+                int.TryParse(Console.ReadLine(), out int losses);
+
+                Console.Write("Enter the new goals for: ");
+                int.TryParse(Console.ReadLine(), out int goalsFor);
+
+                Console.Write("Enter the new goals against: ");
+                int.TryParse(Console.ReadLine(), out int goalsAgainst);
+
+                if(teamService.UpdateTeam(id, name, points, matchesPlayed, wins, draws, losses, goalsFor, goalsAgainst))
+                {
+
+                }
+
+            }
         }
     }
 }
