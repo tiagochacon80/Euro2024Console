@@ -61,14 +61,20 @@ namespace Euro2024AppConsole
         }
 
         static void AddTeam(TeamService teamService)
-        {            
-           
+        {
+            int teamId = InputValidator.GetValidatedInput("Enter the new team ID: "); 
+            
+            if(teamService.GetTeams().Any(t => t.Id == teamId))
+            {
+                Console.WriteLine();
+                Console.WriteLine("ID already exists.");
+                return;
+            }
+
             var team = new Team(0, "", 0, 0, 0, 0, 0, 0, 0);
-            team.Id = InputValidator.GetValidatedInput("Enter the new team ID: ");
-            Console.WriteLine("Enter a new team name: ");
+            Console.WriteLine("Enter a new team: ");
             team.Name = Console.ReadLine();
-
-
+            
             team.Points = InputValidator.GetValidatedInput("Enter the points: ");
             team.MatchesPlayed = InputValidator.GetValidatedInput("Enter the matches played: ");
             team.Wins = InputValidator.GetValidatedInput("Enter a wins: ");
