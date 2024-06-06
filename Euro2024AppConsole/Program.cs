@@ -1,5 +1,6 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using Euro2024AppConsole.Models;
+using Euro2024AppConsole.utils;
 using System.Collections.Concurrent;
 using System.Threading.Channels;
 
@@ -10,6 +11,7 @@ namespace Euro2024AppConsole
         static void Main(string[] args)
         {
             TeamService teamService = new TeamService();
+
             bool running = true;
 
             while (running)
@@ -41,7 +43,7 @@ namespace Euro2024AppConsole
                         running = false;
                         break;
                     default:
-                        Console.WriteLine("Invalid opyion!");
+                        Console.WriteLine("Invalid option!");
                         break;
                 }
             }
@@ -59,135 +61,72 @@ namespace Euro2024AppConsole
         }
 
         static void AddTeam(TeamService teamService)
-        {
-            Console.WriteLine("Enter the new team ID: ");
-            if(int.TryParse(Console.ReadLine(), out int id))
+        {            
+           
+            var team = new Team(0, "", 0, 0, 0, 0, 0, 0, 0);
+            team.Id = InputValidator.GetValidatedInput("Enter the new team ID: ");
+            Console.WriteLine("Enter a new team name: ");
+            team.Name = Console.ReadLine();
+
+
+            team.Points = InputValidator.GetValidatedInput("Enter the points: ");
+            team.MatchesPlayed = InputValidator.GetValidatedInput("Enter the matches played: ");
+            team.Wins = InputValidator.GetValidatedInput("Enter a wins: ");
+            team.Draws = InputValidator.GetValidatedInput("Enter a draws: ");
+            team.Losses = InputValidator.GetValidatedInput("Enter the losses: ");
+            team.GoalsFor = InputValidator.GetValidatedInput("Enter the goals for: ");
+            team.GoalsAgainst = InputValidator.GetValidatedInput("Enter the goals against: ");        
+                      
+
+            if (teamService.AddTeam(team))
             {
-                var team = new Team(id, "", 0, 0, 0, 0, 0, 0, 0);
-                Console.WriteLine("Enter a new team name: ");
-                team.Name = Console.ReadLine();
-
-                Console.WriteLine("Enter the points: ");
-                if(int.TryParse(Console.ReadLine(), out int points))
-                {
-                    team.Points = points;
-                }
-
-                Console.WriteLine("Enter the matches played: ");
-                if (int.TryParse(Console.ReadLine(), out int matchesPlayed))
-                {
-                    team.MatchesPlayed = matchesPlayed;
-                }
-
-                Console.WriteLine("Enter a wins: ");
-                if (int.TryParse(Console.ReadLine(), out int wins))
-                {
-                    team.Wins = wins;
-                }
-
-                Console.WriteLine("Enter a draws: ");
-                if(int.TryParse(Console.ReadLine(), out int draws))
-                {
-                    team.Draws = draws;
-                }
-
-                Console.WriteLine("Enter the losses: ");
-                if(int.TryParse(Console.ReadLine(), out int losses))
-                {
-                    team.Losses = losses;
-                }
-
-                Console.WriteLine("Enter the new goals for: ");
-                if(int.TryParse(Console.ReadLine(), out int goalsFor))
-                {
-                    team.GoalsFor = goalsFor;
-                }
-
-                Console.Write("Enter the new goals against: ");
-                if(int.TryParse(Console.ReadLine(), out int goalsAgainst))
-                {
-                    team.GoalsAgainst = goalsAgainst;
-                }
-
-                if (teamService.AddTeam(team))
-                {
-                    Console.WriteLine("Team added successfully!");
-                }
-                else
-                {
-                    Console.WriteLine("ID already exists.");
-                }                
+                Console.WriteLine("Team added successfully!");
             }
             else
             {
-                Console.WriteLine("Invalid ID.");
-            }
+                Console.WriteLine("ID already exists.");
+            }                           
             Console.WriteLine();
         }
 
         static void UpdateTeam(TeamService teamService)
         {
-            Console.WriteLine("Enter a ID of the team to updated: ");
-            if (int.TryParse(Console.ReadLine(), out int id))
+            int id = InputValidator.GetValidatedInput("Enter a ID of the team to updated: ");            
+            Console.WriteLine("Enter the new team name: ");
+            var name = Console.ReadLine();
+
+            int points = InputValidator.GetValidatedInput("Enter the new points: ");
+            int matchesPlayed = InputValidator.GetValidatedInput("Enter the new matches played: ");
+            int wins = InputValidator.GetValidatedInput("Enter the new wins: ");
+            int draws = InputValidator.GetValidatedInput("Enter the new draws: ");
+            int losses = InputValidator.GetValidatedIntInput("Enter the new losses: ");
+            int goalsFor = InputValidator.GetValidatedIntInput("Enter the new goals for: ");
+            int goalsAgainst = InputValidator.GetValidatedIntInput("Enter the new goals against: ");            
+
+            if (teamService.UpdateTeam(id, name, points, matchesPlayed, wins, draws, losses, goalsFor, goalsAgainst))
             {
-                Console.WriteLine("Enter the new team name: ");
-                var name = Console.ReadLine();
-
-                Console.WriteLine("Enter the new points: ");
-                int.TryParse(Console.ReadLine(), out int points);
-
-                Console.WriteLine("Enter the new matches played: ");
-                int.TryParse(Console.ReadLine(), out int matchesPlayed);
-
-                Console.WriteLine("Enter the new wins: ");
-                int.TryParse(Console.ReadLine(), out int wins);
-
-                Console.WriteLine("Enter the new draws: ");
-                int.TryParse(Console.ReadLine(), out int draws);
-
-                Console.Write("Enter the new losses: ");
-                int.TryParse(Console.ReadLine(), out int losses);
-
-                Console.Write("Enter the new goals for: ");
-                int.TryParse(Console.ReadLine(), out int goalsFor);
-
-                Console.Write("Enter the new goals against: ");
-                int.TryParse(Console.ReadLine(), out int goalsAgainst);
-
-                if (teamService.UpdateTeam(id, name, points, matchesPlayed, wins, draws, losses, goalsFor, goalsAgainst))
-                {
-                    Console.WriteLine("Team updated successfully!");
-                }
-                else
-                {
-                    Console.WriteLine("Error updating team");
-                }
+                Console.WriteLine("Team updated successfully!");
             }
             else
             {
-                Console.WriteLine("Invalid ID");
-            }                       
-             Console.WriteLine();
+                Console.WriteLine("Error updating team");
+            }           
+                                            
+            Console.WriteLine();
             }
             
         static void DeleteTeam(TeamService teamService)
-        {
-            Console.WriteLine("Enter the ID of the team to be deleted: ");
-            if(int.TryParse(Console.ReadLine(), out int id))
+        {           
+            int id = InputValidator.GetValidatedInput("Enter the ID of the team to be deleted: ");           
+            if (teamService.DeleteTeam(id))
             {
-                if (teamService.DeleteTeam(id))
-                {
-                    Console.WriteLine("team deleted successfully!");
-                }
-                else
-                {
-                    Console.WriteLine("team not found!");
-                }
+                Console.WriteLine("team deleted successfully!");
             }
             else
             {
-                Console.WriteLine("Invalid ID!");
-            }
+                Console.WriteLine("team not found!");
+            }            
+            
             Console.WriteLine();
         }
     }
