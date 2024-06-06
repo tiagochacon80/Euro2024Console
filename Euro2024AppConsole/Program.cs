@@ -99,9 +99,9 @@ namespace Euro2024AppConsole
             int matchesPlayed = InputValidator.GetValidatedInput("Enter the new matches played: ");
             int wins = InputValidator.GetValidatedInput("Enter the new wins: ");
             int draws = InputValidator.GetValidatedInput("Enter the new draws: ");
-            int losses = InputValidator.GetValidatedIntInput("Enter the new losses: ");
-            int goalsFor = InputValidator.GetValidatedIntInput("Enter the new goals for: ");
-            int goalsAgainst = InputValidator.GetValidatedIntInput("Enter the new goals against: ");            
+            int losses = InputValidator.GetValidatedInput("Enter the new losses: ");
+            int goalsFor = InputValidator.GetValidatedInput("Enter the new goals for: ");
+            int goalsAgainst = InputValidator.GetValidatedInput("Enter the new goals against: ");            
 
             if (teamService.UpdateTeam(id, name, points, matchesPlayed, wins, draws, losses, goalsFor, goalsAgainst))
             {
