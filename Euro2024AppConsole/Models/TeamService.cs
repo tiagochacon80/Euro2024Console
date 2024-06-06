@@ -8,8 +8,10 @@ namespace Euro2024AppConsole.Models
 {
     public class TeamService
     {
-        private readonly List<Team> teams;
+        private List<Team> teams = new List<Team>();
+        private HashSet<int> teamIds = new HashSet<int>(); 
 
+        
         public TeamService()
         {
             teams = new List<Team>
@@ -18,16 +20,26 @@ namespace Euro2024AppConsole.Models
                 new Team(2, "Italia", 0,0,0,0,0,0,0),
                 new Team(3, "França", 0,0,0,0,0,0,0)
             };
+
+            foreach(var team in teams)
+            {
+                teamIds.Add(team.Id);
+            }
         }
+        
 
         public bool AddTeam(Team team)
         {
-            if(GetTeamById(team.Id) == null)
+            if (teamIds.Contains(team.Id))
+            {
+                return false;
+            }
+            else
             {
                 teams.Add(team);
+                teamIds.Add(team.Id);
                 return true;
-            }
-            return false;
+            }           
         }
 
         private Team GetTeamById(int id)
@@ -38,30 +50,32 @@ namespace Euro2024AppConsole.Models
         public bool UpdateTeam(int id, string name, int points, int matchesPlayed, int wins, int draws, int losses, int goalsFor, int goalsAgainst)
         {
             var team = GetTeamById(id);
-            if (team != null)
+            if (team == null)
             {
-                team.Name = name;
-                team.Points = points;
-                team.MatchesPlayed = matchesPlayed;
-                team.Wins = wins;
-                team.Draws = draws;
-                team.Losses = losses;
-                team.GoalsFor = goalsFor;
-                team.GoalsAgainst = goalsAgainst;
-                return true;
-            }
-            return false;
+                return false;
+            }   
+            team.Name = name;
+            team.Points = points;
+            team.MatchesPlayed = matchesPlayed;
+            team.Wins = wins;
+            team.Draws = draws;
+            team.Losses = losses;
+            team.GoalsFor = goalsFor;
+            team.GoalsAgainst = goalsAgainst;
+            return true;
         }        
 
         public bool DeleteTeam(int id)
         {
             var team = GetTeamById(id);
-            if (team != null)
+            if (team == null)
             {
-                teams.Remove(team);
-                return true;
+                return false;               
             }
-            return false;
+            teams.Remove(team);
+            teamIds.Remove(id);
+            return true;
+
         }
 
         public List<Team> GetTeams()
