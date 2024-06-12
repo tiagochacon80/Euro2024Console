@@ -1,15 +1,29 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using Euro2024AppConsole.Models;
 using Euro2024AppConsole.utils;
-using System.Collections.Concurrent;
-using System.Threading.Channels;
+using Microsoft.Extensions.Configuration;
+using System;
+using System.IO;
+using Euro2024AppConsole.Models;
+using Euro2024AppConsole.utils;
+
 
 namespace Euro2024AppConsole
 {
     class Program
     {
+        public static IConfigurationRoot Configuration { get; private set; }
         static void Main(string[] args)
         {
+            var builder = new ConfigurationBuilder()
+                .SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile("appsettings.json");
+
+            Configuration = builder.Build();
+
+            string connectionString = Configuration.GetConnectionString("DefaultConnection");
+            Database database = new Database(connectionString);
+
             TeamService teamService = new TeamService();
 
             bool running = true;
