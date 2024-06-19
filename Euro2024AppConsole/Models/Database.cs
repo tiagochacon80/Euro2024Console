@@ -35,5 +35,63 @@ namespace Euro2024AppConsole.Models
                 return cmd.ExecuteNonQuery() > 0;
             }
         }
+
+        public List<Team> GetTeams()
+        {
+            List<Team> teams = new List<Team>();
+            using (MySqlConnection conn = new MySqlConnection(connectionString))
+            {
+                conn.Open();
+                string query = "SELECT * FROM Teams";
+                MySqlCommand cmd = new MySqlCommand(query, conn);
+                using (MySqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        Team team = new Team
+                        {
+                            Id = reader.GetInt32("Id"),
+                            Name = reader.GetString("Name"),
+                            Points = reader.GetInt32("Points"),
+                            MatchesPlayed = reader.GetInt32("MatchesPlayed"),
+                            Wins = reader.GetInt32("Wins"),
+                            Draws = reader.GetInt32("Draws"),
+                            Losses = reader.GetInt32("Losses"),
+                            GoalsFor = reader.GetInt32("GoalsFor"),
+                            GoalsAgainst = reader.GetInt32("GoalsAgainst")
+                        };
+                        teams.Add(team);
+                    }
+                }
+            }
+            return teams;
+        }
+
+        public bool UpdatePoints(int teamId, string result)
+        {
+            using (MySqlConnection conn = new MySqlConnection(connectionString))
+            {
+                conn.Open();
+
+                string query = "";
+
+                if (result == "Win")
+                {
+                    query = "UPDATE Teams SET Points = Points + 3, Wins = Wins + 1 WHERE Id = @Id";
+                }
+                else if (result == "draw")
+                {
+                    query = "UPDATE Teams SET Points = Points + 1, Draws = Draws + 1 WHERE Id = @Id";
+                }
+                else if (result == "loss")
+                {
+                    query = "UPDATE Teams SET Losses = Losses + 1 WHERE Id = @Id";
+                }
+
+                MySqlCommand cmd = new MySqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@Id", teamId);
+                return cmd.ExecuteNonQuery() > 0;
+            }
+        }
     }
 }
