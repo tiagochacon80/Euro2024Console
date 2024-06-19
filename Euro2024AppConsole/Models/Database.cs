@@ -93,5 +93,19 @@ namespace Euro2024AppConsole.Models
                 return cmd.ExecuteNonQuery() > 0;
             }
         }
+
+        public bool UpdateScore(int teamId, int goalsFor, int goalsAgainst)
+        {
+            using (MySqlConnection conn = new MySqlConnection(connectionString))
+            {
+                conn.Open();
+                string query = "UPDATE Teams SET = GoalsFor + @GoalsFor, GoalsAgainst = GoalsAgainst + @GoalsAgainst WHERE Id = @Id";
+                MySqlCommand cmd = new MySqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@Id", teamId);
+                cmd.Parameters.AddWithValue("@GoalsFor", goalsFor);
+                cmd.Parameters.AddWithValue("@GoalsAgainst", goalsAgainst);
+                return cmd.ExecuteNonQuery() > 0;
+            }
+        }
     }
 }
