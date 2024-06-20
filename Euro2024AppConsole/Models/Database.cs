@@ -107,5 +107,18 @@ namespace Euro2024AppConsole.Models
                 return cmd.ExecuteNonQuery() > 0;
             }
         }
+
+        public bool DeleteTeam(int teamId)
+        {
+            using (MySqlConnection conn = new MySqlConnection(connectionString))
+            {
+                conn.Open();
+                string query = "DELETE FROM Teams WHERE Id = @Id";
+                MySqlCommand cmd = new MySqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@Id", teamId);
+                return cmd.ExecuteNonQuery() > 0;
+            }
+           
+        }
     }
 }
