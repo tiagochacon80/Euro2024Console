@@ -3,14 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Euro2024AppConsole.Models;
 using MySql.Data.MySqlClient;
 
-namespace Euro2024AppConsole.Models
+namespace Euro2024AppConsole.Data
 {
     public class Database
     {
         public string connectionString;
-        
+
         public Database(string connectionString)
         {
             this.connectionString = connectionString;
@@ -118,7 +119,7 @@ namespace Euro2024AppConsole.Models
                 cmd.Parameters.AddWithValue("@Id", teamId);
                 return cmd.ExecuteNonQuery() > 0;
             }
-           
+
         }
     }
 }

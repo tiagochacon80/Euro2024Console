@@ -8,7 +8,7 @@ using Euro2024AppConsole.Models;
 using Euro2024AppConsole.utils;
 
 
-namespace Euro2024AppConsole
+namespace Euro2024AppConsole.Presentation
 {
     class Program
     {
@@ -76,9 +76,9 @@ namespace Euro2024AppConsole
 
         static void AddTeam(TeamService teamService)
         {
-            int teamId = InputValidator.GetValidatedInput("Enter the new team ID: "); 
-            
-            if(teamService.GetTeams().Any(t => t.Id == teamId))
+            int teamId = InputValidator.GetValidatedInput("Enter the new team ID: ");
+
+            if (teamService.GetTeams().Any(t => t.Id == teamId))
             {
                 Console.WriteLine();
                 Console.WriteLine("ID already exists.");
@@ -88,15 +88,15 @@ namespace Euro2024AppConsole
             var team = new Team(0, "", 0, 0, 0, 0, 0, 0, 0);
             Console.WriteLine("Enter a new team: ");
             team.Name = Console.ReadLine();
-            
+
             team.Points = InputValidator.GetValidatedInput("Enter the points: ");
             team.MatchesPlayed = InputValidator.GetValidatedInput("Enter the matches played: ");
             team.Wins = InputValidator.GetValidatedInput("Enter a wins: ");
             team.Draws = InputValidator.GetValidatedInput("Enter a draws: ");
             team.Losses = InputValidator.GetValidatedInput("Enter the losses: ");
             team.GoalsFor = InputValidator.GetValidatedInput("Enter the goals for: ");
-            team.GoalsAgainst = InputValidator.GetValidatedInput("Enter the goals against: ");        
-                      
+            team.GoalsAgainst = InputValidator.GetValidatedInput("Enter the goals against: ");
+
 
             if (teamService.AddTeam(team))
             {
@@ -105,13 +105,13 @@ namespace Euro2024AppConsole
             else
             {
                 Console.WriteLine("ID already exists.");
-            }                           
+            }
             Console.WriteLine();
         }
 
         static void UpdateTeam(TeamService teamService)
         {
-            int id = InputValidator.GetValidatedInput("Enter a ID of the team to updated: ");            
+            int id = InputValidator.GetValidatedInput("Enter a ID of the team to updated: ");
             Console.WriteLine("Enter the new team name: ");
             var name = Console.ReadLine();
 
@@ -121,7 +121,7 @@ namespace Euro2024AppConsole
             int draws = InputValidator.GetValidatedInput("Enter the new draws: ");
             int losses = InputValidator.GetValidatedInput("Enter the new losses: ");
             int goalsFor = InputValidator.GetValidatedInput("Enter the new goals for: ");
-            int goalsAgainst = InputValidator.GetValidatedInput("Enter the new goals against: ");            
+            int goalsAgainst = InputValidator.GetValidatedInput("Enter the new goals against: ");
 
             if (teamService.UpdateTeam(id, name, points, matchesPlayed, wins, draws, losses, goalsFor, goalsAgainst))
             {
@@ -130,14 +130,14 @@ namespace Euro2024AppConsole
             else
             {
                 Console.WriteLine("Error updating team");
-            }           
-                                            
-            Console.WriteLine();
             }
-            
+
+            Console.WriteLine();
+        }
+
         static void DeleteTeam(TeamService teamService)
-        {           
-            int id = InputValidator.GetValidatedInput("Enter the ID of the team to be deleted: ");           
+        {
+            int id = InputValidator.GetValidatedInput("Enter the ID of the team to be deleted: ");
             if (teamService.DeleteTeam(id))
             {
                 Console.WriteLine("team deleted successfully!");
@@ -145,8 +145,8 @@ namespace Euro2024AppConsole
             else
             {
                 Console.WriteLine("team not found!");
-            }            
-            
+            }
+
             Console.WriteLine();
         }
     }
